@@ -1,0 +1,185 @@
+
+OpenSBI v1.8.1
+   ____                    _____ ____ _____
+  / __ \                  / ____|  _ \_   _|
+ | |  | |_ __   ___ _ __ | (___ | |_) || |
+ | |  | | '_ \ / _ \ '_ \ \___ \|  _ < | |
+ | |__| | |_) |  __/ | | |____) | |_) || |_
+  \____/| .__/ \___|_| |_|_____/|____/_____|
+        | |
+        |_|
+
+Platform Name               : riscv-virtio,qemu
+Platform Features           : medeleg
+Platform HART Count         : 1
+Platform HART Protection    : pmp
+Platform IPI Device         : aclint-mswi
+Platform Timer Device       : aclint-mtimer @ 10000000Hz
+Platform Console Device     : uart8250
+Platform HSM Device         : ---
+Platform PMU Device         : ---
+Platform Reboot Device      : syscon-reboot
+Platform Shutdown Device    : syscon-poweroff
+Platform Suspend Device     : ---
+Platform CPPC Device        : ---
+Firmware Base               : 0x80000000
+Firmware Size               : 321 KB
+Firmware RW Offset          : 0x40000
+Firmware RW Size            : 65 KB
+Firmware Heap Offset        : 0x47000
+Firmware Heap Size          : 37 KB (total), 0 KB (reserved), 12 KB (used), 23 KB (free)
+Firmware Scratch Size       : 4096 B (total), 1464 B (used), 2632 B (free)
+Runtime SBI Version         : 3.0
+Standard SBI Extensions     : time,rfnc,ipi,base,hsm,srst,pmu,dbcn,fwft,legacy,dbtr,sse
+Experimental SBI Extensions : none
+
+Domain0 Name                : root
+Domain0 Boot HART           : 0
+Domain0 HARTs               : 0*
+Domain0 Region00            : 0x0000000080040000-0x000000008005ffff M: (F,R,W) S/U: ()
+Domain0 Region01            : 0x0000000080000000-0x000000008003ffff M: (F,R,X) S/U: ()
+Domain0 Region02            : 0x0000000000100000-0x0000000000100fff M: (I,R,W) S/U: (R,W)
+Domain0 Region03            : 0x0000000010000000-0x0000000010000fff M: (I,R,W) S/U: (R,W)
+Domain0 Region04            : 0x0000000002000000-0x000000000200ffff M: (I,R,W) S/U: ()
+Domain0 Region05            : 0x000000000c400000-0x000000000c5fffff M: (I,R,W) S/U: (R,W)
+Domain0 Region06            : 0x000000000c000000-0x000000000c3fffff M: (I,R,W) S/U: (R,W)
+Domain0 Region07            : 0x0000000000000000-0xffffffffffffffff M: () S/U: (R,W,X)
+Domain0 Next Address        : 0x0000000080200000
+Domain0 Next Arg1           : 0x0000000087e00000
+Domain0 Next Mode           : S-mode
+Domain0 SysReset            : yes
+Domain0 SysSuspend          : yes
+
+Boot HART ID                : 0
+Boot HART Domain            : root
+Boot HART Priv Version      : v1.12
+Boot HART Base ISA          : rv64imafdch
+Boot HART ISA Extensions    : sstc,zicntr,zihpm,zicboz,zicbom,sdtrig,svadu
+Boot HART PMP Count         : 16
+Boot HART PMP Granularity   : 2 bits
+Boot HART PMP Address Bits  : 54
+Boot HART MHPM Info         : 16 (0x0007fff8)
+Boot HART Debug Triggers    : 2 triggers
+Boot HART MIDELEG           : 0x0000000000001666
+Boot HART MEDELEG           : 0x0000000000f4b509
+RVC-Straddle S-mode / Sv39 / single hart
+initial satp=0x0000000000000000
+PASS: OpenSBI entered with Bare satp
+root A PA=0x000000008020f000
+root B PA=0x000000008020e000
+page0 PA=0x000000008020b000
+page1 A PA=0x000000008020a000
+page1 B PA=0x0000000080209000
+PASS: Sv39 enabled with root A
+instruction VA=0x0000000040000ffe
+low16 @ page0+4094=0x0000000000000513
+high16 @ page1+0=0x0000000000000010
+encoding32=0x0000000000100513
+next-page PTE=0x000000002008284b
+a0 before=0x0000000000000055
+a0 after=0x0000000000000001
+satp before=0x800000000008020f
+satp after=0x800000000008020f
+PASS: straddling addi returns 1
+instruction VA=0x0000000040000ffe
+low16 @ page0+4094=0x0000000000000513
+high16 @ page1+0=0x0000000000000020
+encoding32=0x0000000000200513
+next-page PTE=0x000000002008244b
+a0 before=0x0000000000000055
+a0 after=0x0000000000000002
+satp before=0x800000000008020f
+satp after=0x800000000008020f
+PASS: replacing only next page returns 2
+instruction VA=0x0000000040000ffe
+low16 @ page0+4094=0x0000000000001073
+high16 @ page1+0=0x0000000000001805
+encoding32=0x0000000018051073
+next-page PTE=0x000000002008244b
+satp before=0x800000000008020f
+a0 write operand=0x800000000008020e
+a0 readback=0x800000000008020e
+satp after=0x800000000008020e
+PASS: straddling csrw satp switches root A to root B in S-mode
+BEGIN: immutable code pages, remap-only CSR synthesis
+original code page PA=0x0000000080208000
+satp code page PA=0x0000000080207000
+stvec code page PA=0x0000000080206000
+standalone page first16=0x0000000000001405
+PASS: candidate next page executes independently without CSR writes
+standalone page first16=0x0000000000001805
+PASS: candidate next page executes independently without CSR writes
+standalone page first16=0x0000000000001055
+PASS: candidate next page executes independently without CSR writes
+instruction VA=0x0000000040000ffe
+low16 @ page0+4094=0x0000000000000513
+high16 @ page1+0=0x0000000000001805
+encoding32=0x0000000018050513
+next-page PTE=0x0000000020081c4b
+negative-control a0 after=0x00000000000001d5
+PASS: ADDI low half cannot become a CSR write by remapping
+instruction VA=0x0000000040000ffe
+low16 @ page0+4094=0x0000000000000513
+high16 @ page1+0=0x0000000000001055
+encoding32=0x0000000010550513
+next-page PTE=0x000000002008184b
+negative-control a0 after=0x000000000000015a
+PASS: ADDI low half cannot become a CSR write by remapping
+instruction VA=0x0000000040000ffe
+low16 @ page0+4094=0x0000000000001073
+high16 @ page1+0=0x0000000000001405
+encoding32=0x0000000014051073
+next-page PTE=0x000000002008204b
+original sscratch before=0x0000000000000000
+original sscratch after=0x0000000000000055
+PASS: original stream writes sscratch only
+instruction VA=0x0000000040000ffe
+low16 @ page0+4094=0x0000000000001073
+high16 @ page1+0=0x0000000000001805
+encoding32=0x0000000018051073
+next-page PTE=0x0000000020081c4b
+remapped satp before=0x800000000008020e
+remapped satp operand=0x800000000008020f
+remapped satp after=0x800000000008020f
+PASS: PTE-only replacement synthesizes csrw satp from csrw sscratch
+PASS: original mapping still writes sscratch only
+instruction VA=0x0000000040000ffe
+low16 @ page0+4094=0x0000000000001073
+high16 @ page1+0=0x0000000000001055
+encoding32=0x0000000010551073
+next-page PTE=0x000000002008184b
+remapped stvec before=0x0000000080200050
+remapped stvec operand=0x000000008020008c
+remapped stvec after=0x000000008020008c
+PASS: PTE-only replacement synthesizes csrw stvec from csrw sscratch
+PASS: first-page low half unchanged throughout CSR remapping
+PASS: remap-only CSR experiment complete; stvec/sscratch restored
+BEGIN: same bytes and PTEs, enter ordinary instruction at +2
+PASS: middle-entry test starts at root A
+normal entry VA=0x0000000040000ffc
+middle entry VA=0x0000000040000ffe
+normal encoding32=0x0000000010730513
+following encoding16=0x0000000000001805
+instruction VA=0x0000000040000ffe
+low16 @ page0+4094=0x0000000000001073
+high16 @ page1+0=0x0000000000001805
+encoding32=0x0000000018051073
+next-page PTE=0x0000000020081c4b
+normal a0 before=0x800000000008020e
+normal t1 before=0x0000000000000000
+normal a6 before=0x0000000000000040
+normal satp before=0x800000000008020f
+normal a0 after=0x0000000000000107
+normal a6 after=0x0000000000000021
+normal satp after=0x800000000008020f
+PASS: normal stream executes ADDI and C.ADDI without writing satp
+middle a0 before=0x800000000008020e
+middle t1 before=0x0000000000000000
+middle a6 before=0x0000000000000040
+middle satp before=0x800000000008020f
+middle a0 after=0x800000000008020e
+middle a6 after=0x0000000000000040
+middle satp after=0x800000000008020e
+PASS: entry +2 executes synthesized csrw satp,a0 and switches to root B
+PASS: both streams used identical code bytes and leaf PTEs; no remapping
+ALL PASS: cross-page, remap-only CSR, and middle-entry satp
